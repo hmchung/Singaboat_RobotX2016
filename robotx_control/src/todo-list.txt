@@ -1,0 +1,10 @@
+- test 6 cameras operating simultaneously
+- publish raw images
+	- raw_images/
+		- front_right/
+		- front_left/
+		- right_right/
+		- right_left/
+		- left_right/
+		- left_left/
+- test simple stereovision
