@@ -1,0 +1,96 @@
+<launch> 
+  <arg name="camera_name_f_r" default="cam_f_r" />
+  <arg name="camera_name_f_l" default="cam_f_l" />
+  <arg name="camera_name_r_r" default="cam_r_r" />
+  <arg name="camera_name_r_l" default="cam_r_l" />
+  <arg name="camera_name_l_r" default="cam_l_r" />
+  <arg name="camera_name_l_l" default="cam_l_l" />    
+  <arg name="camera_ip_f_r" default="192.168.1.13" />
+  <arg name="camera_ip_f_l" default="192.168.1.14" />
+  <arg name="camera_ip_r_r" default="192.168.1.15" />
+  <arg name="camera_ip_r_l" default="192.168.1.16" />
+  <arg name="camera_ip_l_r" default="192.168.1.17" />
+  <arg name="camera_ip_l_l" default="192.168.1.18" />
+
+  <arg name="image_width" default="640" />
+  <arg name="image_height" default="480" />
+  <arg name="enable_theora" default="0" />
+
+  <group ns="$(arg camera_name_f_r)">
+    <param name="hostname" value="$(arg camera_ip_f_r)" />
+    <param name="width" value="$(arg image_width)" />
+    <param name="height" value="$(arg image_height)" />
+    <node pkg="axis_camera" type="axis.py" name="$(arg camera_name_f_r)"/>
+
+    <node pkg="image_transport" type="republish" name="republish"
+          args="compressed" if="$(arg enable_theora)">
+      <remap from="in" to="image_raw" />
+      <remap from="out" to="image_raw_out" />
+    </node>
+  </group>
+
+  <group ns="$(arg camera_name_f_l)">
+    <param name="hostname" value="$(arg camera_ip_f_l)" />
+    <param name="width" value="$(arg image_width)" />
+    <param name="height" value="$(arg image_height)" />
+    <node pkg="axis_camera" type="axis.py" name="$(arg camera_name_f_l)"/>
+
+    <node pkg="image_transport" type="republish" name="republish"
+          args="compressed" if="$(arg enable_theora)">
+      <remap from="in" to="image_raw" />
+      <remap from="out" to="image_raw_out" />
+    </node>
+  </group>
+
+  <group ns="$(arg camera_name_r_r)">
+    <param name="hostname" value="$(arg camera_ip_r_r)" />
+    <param name="width" value="$(arg image_width)" />
+    <param name="height" value="$(arg image_height)" />
+    <node pkg="axis_camera" type="axis.py" name="$(arg camera_name_r_r)"/>
+
+    <node pkg="image_transport" type="republish" name="republish"
+          args="compressed" if="$(arg enable_theora)">
+      <remap from="in" to="image_raw" />
+      <remap from="out" to="image_raw_out" />
+    </node>
+  </group>
+
+  <group ns="$(arg camera_name_r_l)">
+    <param name="hostname" value="$(arg camera_ip_r_l)" />
+    <param name="width" value="$(arg image_width)" />
+    <param name="height" value="$(arg image_height)" />
+    <node pkg="axis_camera" type="axis.py" name="$(arg camera_name_r_l)"/>
+
+    <node pkg="image_transport" type="republish" name="republish"
+          args="compressed" if="$(arg enable_theora)">
+      <remap from="in" to="image_raw" />
+      <remap from="out" to="image_raw_out" />
+    </node>
+  </group>
+
+  <group ns="$(arg camera_name_l_r)">
+    <param name="hostname" value="$(arg camera_ip_l_r)" />
+    <param name="width" value="$(arg image_width)" />
+    <param name="height" value="$(arg image_height)" />
+    <node pkg="axis_camera" type="axis.py" name="$(arg camera_name_l_r)"/>
+
+    <node pkg="image_transport" type="republish" name="republish"
+          args="compressed" if="$(arg enable_theora)">
+      <remap from="in" to="image_raw" />
+      <remap from="out" to="image_raw_out" />
+    </node>
+  </group>
+
+  <group ns="$(arg camera_name_l_l)">
+    <param name="hostname" value="$(arg camera_ip_l_l)" />
+    <param name="width" value="$(arg image_width)" />
+    <param name="height" value="$(arg image_height)" />
+    <node pkg="axis_camera" type="axis.py" name="$(arg camera_name_l_l)"/>
+
+    <node pkg="image_transport" type="republish" name="republish"
+          args="compressed" if="$(arg enable_theora)">
+      <remap from="in" to="image_raw" />
+      <remap from="out" to="image_raw_out" />
+    </node>
+  </group>
+</launch>
